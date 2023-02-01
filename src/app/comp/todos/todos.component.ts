@@ -13,6 +13,11 @@ export interface Product {
   rating?:number;
 }
 
+export interface ProductColumn {
+  field?: keyof Product;
+  header?: string;
+}
+
 @Component({
   selector: 'app-todos',
   templateUrl: './todos.component.html',
@@ -21,8 +26,15 @@ export interface Product {
 export class TodosComponent implements OnInit {
 
   products: Product[];
+  columns: ProductColumn[];
 
   constructor() {
+    this.columns = [
+      { field: 'code', header: 'Code' },
+      { field: 'name', header: 'Name' },
+      { field: 'category', header: 'Category' },
+      { field: 'quantity', header: 'Quantity' }
+    ];
     this.products = [
       {
         "id": "1000",
